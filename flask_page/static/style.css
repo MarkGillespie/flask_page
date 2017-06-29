@@ -1,0 +1,157 @@
+body {
+	font-family: sans-serif;
+	background: #eee;
+	padding: 0;
+	margin: 0;
+	font-family: 'Raleway', sans-serif;
+}
+
+.main_title {
+	margin: 0;
+	font-size: 400%;
+}
+
+.page {
+	/* margin: 2em auto;
+	width: 35em;
+	border: 5px solid #ccc;
+	padding: 0.8em;
+	background: white;
+	overflow: hidden; */
+}
+
+div.header {
+	background: linear-gradient(rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
+	text-shadow: 0px 0px 8px #000000;
+	color: #FFFFFF;
+	padding: 20px;
+	margin: 0px;
+	height: 150px;
+}
+
+#content {
+	padding: 2em;
+}
+
+.button a {
+	text-decoration: none;
+	background-color: #FF3B3F;
+	color: white;
+	padding: 5px;
+	border-radius: 10px;
+	float: right;
+	margin: 0em 0.2em;
+}
+
+.entries {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.entries li {
+	margin: 0.8em 0.8em;
+	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+	float: left;
+}
+
+.entries li a {
+	text-decoration: none;
+}
+
+.entries li div.head {
+	padding: 0.2em;
+	background-color: #CAEBF2;
+	color: white;
+}
+
+.entries li div.head span.title{
+	font-size: 24px;
+	margin-right: 2em;
+	color: #555;
+}
+
+.entries li div.head input{
+	background: none;
+	border: none;
+	float: right;
+	color: #555;
+	padding: 3px;
+	display: block;
+}
+
+.entries li div.head input:hover {
+	cursor: pointer;	
+	color: #777;
+}
+
+.entries li div.body {
+	background-color: #FAFAFA;
+	padding: 0.5em;
+	color: #777;
+}
+
+.add-entry {
+	font-size: 0.9em;
+	border-bottom: 1px solid #ccc;
+}
+
+.add-entry dl {
+	font-weight: bold;
+}
+
+.metanav {
+	text-align: right;
+	padding: 0.3em;
+	margin-bottom: 1em;
+}
+
+.flash {
+	background: #cee5F5;
+	padding: 0.5em;
+	border: 1px solid #aacbe2;
+	margin-bottom: 1em;
+}
+
+.error {
+	background: #f0d6d6;
+	padding: 0.5em;
+}
+
+.inline {
+	display: inline;
+}
+
+.hide_me {
+    -moz-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Firefox */
+    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Safari and Chrome */
+    -o-animation: cssAnimation 0s ease-in 5s forwards;
+    /* Opera */
+    -webkit-animation-fill-mode: forwards;
+    animation: cssAnimation 0s ease-in 5s forwards;
+    animation-fill-mode: forwards;
+}
+@keyframes cssAnimation {
+	0% {
+		color: red;
+	}
+    100% {
+        width:0;
+        height:0;
+        overflow:hidden;
+    }
+}
+
+@-webkit-keyframes cssAnimation {
+	0% {
+		color: red;
+	}
+    100% {
+        width:0;
+        height:0;
+        visibility:hidden;
+    }
+}

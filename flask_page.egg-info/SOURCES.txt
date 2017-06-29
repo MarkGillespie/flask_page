@@ -1,0 +1,8 @@
+MANIFEST.in
+flask_page/flask_page.py
+flask_page/schema.sql
+flask_page.egg-info/PKG-INFO
+flask_page.egg-info/SOURCES.txt
+flask_page.egg-info/dependency_links.txt
+flask_page.egg-info/requires.txt
+flask_page.egg-info/top_level.txt

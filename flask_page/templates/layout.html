@@ -1,0 +1,33 @@
+<!doctype html>
+<title>Mark Gillespie</title>
+<link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+
+<script type="text/javascript" src="{{ url_for('static', filename='background.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='backgrounds.json') }}"></script>
+
+<body onload="getBackground()">
+<div class=page>
+	<div class="header">
+		<div class=metanav>
+		{% if not session.logged_in %}
+			<span class="button"><a href="{{ url_for('login') }}">log in</a></span>
+		{% else %}
+			<span class="button">
+				<a href="{{ url_for('logout') }}">log out</a>
+			</span>
+			<span class="button">
+				<a href="{{ url_for('add_website') }}">add website</a>
+			</span>
+		{% endif %}
+		</div>
+		<span class="main_title">Mark Gillespie</span>
+	</div>
+	<div id="content">
+	{% for message in get_flashed_messages() %}
+		<span class="flash hide_me">{{ message }}</span>
+	{% endfor %}
+	{% block body %}{% endblock %}
+	</div>
+</div>
+</body>
