@@ -3,17 +3,19 @@
 	<ul class=entries>
 	{% for entry in entries %}
 		<li>
-			<div class="head">
-				{% if session.logged_in %}
-				<form action="{{ url_for('delete_entry', entry_id = entry.id) }}" method=post class=inline><input type=submit value=Delete></form>
-				{% endif %}
+			<div class="panel entry_panel">
+				<div class="head">
+					{% if session.logged_in %}
+					<form action="{{ url_for('delete_entry', entry_id = entry.id) }}" method=post class=inline><input type=submit value=Delete></form>
+					{% endif %}
+					<a href="{{ entry.link }}">
+						<span class="title">{{ entry.title }}</span>
+					</a>
+				</div>
 				<a href="{{ entry.link }}">
-					<span class="title">{{ entry.title }}</span>
+					<div class="body"> {{ entry.text|safe }} </div>
 				</a>
 			</div>
-			<a href="{{ entry.link }}">
-				<div class="body"> {{ entry.text|safe }} </div>
-			</a>
 	{% else %}
 		<li><em>Unbelievable.  No entries here so far</em>
 	{% endfor %}

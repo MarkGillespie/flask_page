@@ -1,16 +1,29 @@
 {% extends "layout.html" %}
 {% block body %}
 	{% if session.logged_in %}
-		<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
-			<dl>
-				<dt>Title:
-				<dd><input type=text size=30 name=title>
-				<dt>Link:
-				<dd><input type=text size=30 name=link>
-				<dt>Text:
-				<dd><textarea name=text rows=5 cols=40></textarea>
-				<dd><input type=submit value=Share>
-			</dl>
-		</form>
+
+		<div class="panel add_entry_panel">
+			<div class="head">
+					<span class="title">Add Website</span>
+			</div>
+			<div class="body"> 
+				<form action="{{ url_for('add_entry') }}" method=post class=add-entry>
+					<dl>
+						<dt>Title:
+						<dd><input type=text size=40 name=title class="round_text_box">
+						<dt>Link:
+						<dd><input type=text size=40 name=link class="round_text_box">
+						<dt>Text:
+						<dd><textarea name=text rows=5 cols=38 class="round_text_box"></textarea>
+						<dd>
+					</dl>
+					<input class="button" type=submit value=Share>
+				</form>
+
+				<a href="{{ url_for('show_entries') }}"><div class="button" > Cancel </div></a>
+			</div>
+		</div>
+
+		
 	{% endif %}
 {% endblock %}

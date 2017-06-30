@@ -1,12 +1,13 @@
 <!doctype html>
 <title>Mark Gillespie</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
-<link href='https://fonts.googleapis.com/css?family=Raleway:400,600' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="{{ url_for('static', filename='background.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='backgrounds.json') }}"></script>
 
 <body onload="getBackground()">
+<div class=page id="background"></div>
 <div class=page>
 	<div class="header">
 		<div class=metanav>
@@ -21,7 +22,7 @@
 			</span>
 		{% endif %}
 		</div>
-		<span class="main_title">Mark Gillespie</span>
+		<span class="main_title">Hello, Mark</span>
 	</div>
 	<div id="content">
 	{% for message in get_flashed_messages() %}

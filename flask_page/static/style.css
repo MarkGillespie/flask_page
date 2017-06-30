@@ -1,9 +1,14 @@
+html {
+	height: 100%;
+}
+
 body {
 	font-family: sans-serif;
 	background: #eee;
 	padding: 0;
 	margin: 0;
 	font-family: 'Raleway', sans-serif;
+	height: 100%;
 }
 
 .main_title {
@@ -11,13 +16,15 @@ body {
 	font-size: 400%;
 }
 
+#background {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #18121E;
+	z-index: -1000;
+}
+
 .page {
-	/* margin: 2em auto;
-	width: 35em;
-	border: 5px solid #ccc;
-	padding: 0.8em;
-	background: white;
-	overflow: hidden; */
 }
 
 div.header {
@@ -33,14 +40,26 @@ div.header {
 	padding: 2em;
 }
 
-.button a {
-	text-decoration: none;
+.button {
 	background-color: #FF3B3F;
 	color: white;
 	padding: 5px;
 	border-radius: 10px;
 	float: right;
-	margin: 0em 0.2em;
+	margin: 0.2em 0.2em;
+	border: none;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: 'Raleway', sans-serif;
+}
+
+.button a {
+	text-decoration: none;
+	color: white;
+}
+
+.button:hover {
+	cursor: pointer;
 }
 
 .entries {
@@ -50,29 +69,43 @@ div.header {
 	overflow: hidden;
 }
 
-.entries li {
+.panel {
 	margin: 0.8em 0.8em;
-	box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.5);
+	box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 	float: left;
 }
 
-.entries li a {
+.entry_panel {
+	width: 300px;	
+}
+
+.add_entry_panel {
+	width: 450px;	
+}
+
+.login_panel {
+	width: 350px;
+}
+
+.panel a {
 	text-decoration: none;
 }
 
-.entries li div.head {
-	padding: 0.2em;
-	background-color: #CAEBF2;
+.panel div.head {
+	padding: 0.4em;
+	background-color: #233237;
 	color: white;
+	box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.1);	
 }
 
-.entries li div.head span.title{
+.panel div.head span.title{
 	font-size: 24px;
+	font-weight: bold;
 	margin-right: 2em;
-	color: #555;
+	color: #EEE;
 }
 
-.entries li div.head input{
+.panel div.head input{
 	background: none;
 	border: none;
 	float: right;
@@ -81,15 +114,17 @@ div.header {
 	display: block;
 }
 
-.entries li div.head input:hover {
+.panel div.head input:hover {
 	cursor: pointer;	
 	color: #777;
 }
 
-.entries li div.body {
+.panel div.body {
 	background-color: #FAFAFA;
 	padding: 0.5em;
 	color: #777;
+	box-shadow: inset 0px 4px 1px -2px rgba(0, 0, 0, 0.3);
+	overflow: hidden;
 }
 
 .add-entry {
@@ -123,35 +158,39 @@ div.header {
 	display: inline;
 }
 
-.hide_me {
-    -moz-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Firefox */
-    -webkit-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Safari and Chrome */
-    -o-animation: cssAnimation 0s ease-in 5s forwards;
-    /* Opera */
-    -webkit-animation-fill-mode: forwards;
-    animation: cssAnimation 0s ease-in 5s forwards;
-    animation-fill-mode: forwards;
-}
-@keyframes cssAnimation {
-	0% {
-		color: red;
-	}
-    100% {
-        width:0;
-        height:0;
-        overflow:hidden;
-    }
+@-webkit-keyframes fadeout {
+	0% {opacity:1;}
+	100% {opacity:0;}
 }
 
-@-webkit-keyframes cssAnimation {
-	0% {
-		color: red;
-	}
-    100% {
-        width:0;
-        height:0;
-        visibility:hidden;
-    }
+@keyframes fadeout {
+	0% {opacity:1;}
+	100% {opacity:0;}
+}
+
+.fadeOut {
+	opacity: 0;
+	-moz-animation   : fadeout 1s linear;
+	-webkit-animation: fadeout 1s linear;
+	animation        : fadeout 1s linear;
+}
+
+.round_text_box {
+    padding: 3px;
+    outline: none;
+    border: 1px solid #cdcdcd;
+    border-color: rgba(0,0,0,.15);
+    background-color: white;
+    font-size: 16px;
+}
+
+/* Make definition list in-line */
+dt {
+    display: block;
+    float: left;
+    margin-right: 1em;
+}
+
+dt, dd {
+	margin-bottom: 1em;
 }
