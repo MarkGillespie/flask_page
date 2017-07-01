@@ -1,0 +1,21 @@
+<ul class=panel_list>
+{% for site in sites %}
+	<li>
+		<div class="panel site_panel">
+			<div class="head">
+				{% if session.logged_in %}
+				<a href="{{ url_for('edit_site', edit_site_id=site.id) }}"><span class="panel_button">Edit</span></a>
+				<form action="{{ url_for('delete_site', site_id = site.id) }}" method=post class=inline><input type=submit value=Delete class="panel_button"></form>
+				{% endif %}
+				<a href="{{ site.link }}">
+					<span class="title">{{ site.title }}</span>
+				</a>
+			</div>
+			<a href="{{ site.link }}">
+				<div class="body"> {{ site.text|safe }} </div>
+			</a>
+		</div>
+{% else %}
+	<li><em>Unbelievable.  No sites here so far</em>
+{% endfor %}
+</ul>

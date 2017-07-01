@@ -6,6 +6,22 @@
 <script type="text/javascript" src="{{ url_for('static', filename='background.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='backgrounds.json') }}"></script>
 
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+	TeX: {
+		equationNumbers: {  autoNumber: "AMS"  },
+		extensions: ["AMSmath.js", "AMSsymbols.js", "autobold.js", "color.js"]
+	},
+	tex2jax: {
+		inlineMath: [['$','$'], ['\\(','\\)']],
+	    processEscapes: true	
+	}
+});
+</script>
+<script type="text/javascript"
+ src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
 <body onload="getBackground()">
 <div class=page id="background"></div>
 <div class=page>
@@ -20,9 +36,12 @@
 			<span class="button">
 				<a href="{{ url_for('add_website') }}">add website</a>
 			</span>
+			<span class="button">
+				<a href="{{ url_for('add_note') }}">add note</a>
+			</span>
 		{% endif %}
 		</div>
-		<span class="main_title">Hello, Mark</span>
+		<span class="main_title">{% block title %}{% endblock %}</span>
 	</div>
 	<div id="content">
 	{% for message in get_flashed_messages() %}

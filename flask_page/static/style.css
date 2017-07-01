@@ -62,7 +62,7 @@ div.header {
 	cursor: pointer;
 }
 
-.entries {
+.panel_list {
 	list-style: none;
 	margin: 0;
 	padding: 0;
@@ -75,11 +75,19 @@ div.header {
 	float: left;
 }
 
-.entry_panel {
-	width: 300px;	
+.site_panel {
+	width: 350px;	
 }
 
-.add_entry_panel {
+.note_panel {
+	width: 350px;	
+}
+
+.add_site_panel {
+	width: 450px;	
+}
+
+.add_note_panel {
 	width: 450px;	
 }
 
@@ -105,16 +113,19 @@ div.header {
 	color: #EEE;
 }
 
-.panel div.head input{
+.panel div.head .panel_button{
 	background: none;
 	border: none;
 	float: right;
 	color: #555;
-	padding: 3px;
+	padding: 5px;
 	display: block;
+	font-size: 18px;
+	font-weight: normal;
+	font-family: 'Raleway', sans-serif;
 }
 
-.panel div.head input:hover {
+.panel div.head .panel_button:hover {
 	cursor: pointer;	
 	color: #777;
 }
@@ -127,12 +138,12 @@ div.header {
 	overflow: hidden;
 }
 
-.add-entry {
+.add-site {
 	font-size: 0.9em;
 	border-bottom: 1px solid #ccc;
 }
 
-.add-entry dl {
+.add-site dl {
 	font-weight: bold;
 }
 
@@ -193,4 +204,33 @@ dt {
 
 dt, dd {
 	margin-bottom: 1em;
+}
+
+.responsive_area_wrapper {
+	overflow:hidden;
+	width: 100%;
+}
+@media screen and (min-width: 800px) {
+	.responsive_area_first {
+		width:48%;
+		float: left;   
+	}
+
+	.responsive_area_second {
+		float: right;
+		width: 48%;
+	}
+}
+
+@media screen and (max-width: 800px) {
+	.responsive_area_first { 
+		float: none;
+		width:auto;
+		border:0;
+		border-bottom:2px solid #000;    
+	}
+
+	.responsive_area_second {
+		overflow:hidden;
+	}
 }

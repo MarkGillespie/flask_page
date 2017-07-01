@@ -1,0 +1,17 @@
+<ul class=panel_list>
+{% for note in notes %}
+	<li>
+		<div class="panel note_panel">
+			<div class="head">
+				{% if session.logged_in %}
+					<a href="{{ url_for('edit_note', edit_note_id=note.id) }}"><span class="panel_button">Edit</span></a>
+					<form action="{{ url_for('delete_note', del_note_id = note.id) }}" method=post class=inline><input type=submit value=Delete class="panel_button"></form>
+				{% endif %}
+				<span class="title">{{ note.title }}</span>
+			</div>
+			<div class="body"> {{ note.text|safe }} </div>
+		</div>
+{% else %}
+	<li><em>Unbelievable.  No notes here so far</em>
+{% endfor %}
+</ul>

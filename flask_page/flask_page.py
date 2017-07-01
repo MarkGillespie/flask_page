@@ -17,32 +17,13 @@ app.config.update(dict(
 app.config.from_envvar('FLASK_PAGE_SETTIGNS', silent=True)
 
 @app.route('/')
-def show_entries():
+def show_main_page():
 	db = get_db()
-	cur = db.execute('select title, link, text, id from entries order by id desc')
-	entries = cur.fetchall()
-	return render_template('show_entries.html', entries=entries)
-
-@app.route('/add', methods=['POST'])
-def add_entry():
-	if not session.get('logged_in'):
-		abort(401)
-	db = get_db()
-	db.execute('insert into entries (title, link, text) values (?, ?, ?)',
-				 [request.form['title'], request.form['link'], request.form['text']])
-	db.commit()
-	flash('New site was successfully posted')
-	return redirect(url_for('show_entries'))
-
-@app.route('/delete/<int:entry_id>', methods=['POST'])
-def delete_entry(entry_id):
-	if not session.get('logged_in'):
-		abort(401)
-	db = get_db()
-	db.execute('delete from entries where id=' + str(entry_id))
-	db.commit()
-	flash('Site was successfully deleted')
-	return redirect(url_for('show_entries'))
+	cur = db.execute('select title, link, text, id from sites order by id desc')
+	sites = cur.fetchall()
+	cur = db.execute('select title, text, id from notes order by id desc')
+	notes = cur.fetchall()
+	return render_template('show_main_page.html', sites=sites, notes=notes)
 
 def connect_db():
 	"""Connects to the specific database."""
@@ -86,15 +67,13 @@ def login():
 			error = 'Invalid password'
 		else:
 			session['logged_in'] = True
-			flash('You were logged in')
-			return redirect(url_for('show_entries'))
+			return redirect(url_for('show_main_page'))
 	return render_template('login.html', error=error)
 
 @app.route('/logout')
 def logout():
 	session.pop('logged_in', None)
-	flash('You were logged out')
-	return redirect(url_for('show_entries'))
+	return redirect(url_for('show_main_page'))
 
 @app.route('/add_website', methods=['GET', 'POST'])
 def add_website():
@@ -103,9 +82,79 @@ def add_website():
 		if not session.get('logged_in'):
 			abort(401)
 		db = get_db()
-		db.execute('insert into entries (title, link, text) values (?, ?, ?)',
+		db.execute('insert into sites (title, link, text) values (?, ?, ?)',
 					 [request.form['title'], request.form['link'], request.form['text']])
 		db.commit()
-		flash('New entry was successfully posted')
-		return redirect(url_for('show_entries'))
+		return redirect(url_for('show_main_page'))
 	return render_template('add_website.html')
+
+@app.route('/delete_site/<int:site_id>', methods=['POST'])
+def delete_site(site_id):
+	if not session.get('logged_in'):
+		abort(401)
+	db = get_db()
+	db.execute('delete from sites where id=' + str(site_id))
+	db.commit()
+	return redirect(url_for('show_main_page'))
+
+@app.route('/edit_site/<int:edit_site_id>', methods=['GET', 'POST'])
+def edit_site(edit_site_id):
+	print(request.method, edit_site_id)
+	error=None
+	if request.method == 'POST':
+		if not session.get('logged_in'):
+			abort(401)
+		db = get_db()
+		db.execute('update sites set title=?,link=?,text=? where id=?',
+			[request.form['title'], request.form['link'], request.form['text'], str(edit_site_id)])
+		db.commit()
+		return redirect(url_for('show_main_page'))
+	else:
+		if not session.get('logged_in'):
+			abort(401)
+		db = get_db()
+		cur = db.execute('select title, link, text from sites where id=' + str(edit_site_id))
+		site = cur.fetchone()
+		return render_template('edit_site.html', site=site, site_id=edit_site_id)
+
+@app.route('/add_note', methods=['GET', 'POST'])
+def add_note():
+	error=None
+	if request.method == 'POST':
+		if not session.get('logged_in'):
+			abort(401)
+		db = get_db()
+		db.execute('insert into notes (title, text) values (?, ?)',
+					 [request.form['title'], request.form['text']])
+		db.commit()
+		return redirect(url_for('show_main_page'))
+	return render_template('add_note.html')
+
+@app.route('/delete_note/<int:del_note_id>', methods=['POST'])
+def delete_note(del_note_id):
+	if not session.get('logged_in'):
+		abort(401)
+	db = get_db()
+	db.execute('delete from notes where id=' + str(del_note_id))
+	db.commit()
+	return redirect(url_for('show_main_page'))
+
+@app.route('/edit_note/<int:edit_note_id>', methods=['GET', 'POST'])
+def edit_note(edit_note_id):
+	print(request.method, edit_note_id)
+	error=None
+	if request.method == 'POST':
+		if not session.get('logged_in'):
+			abort(401)
+		db = get_db()
+		db.execute('update notes set title=?,text=? where id=?',
+			[request.form['title'], request.form['text'], str(edit_note_id)])
+		db.commit()
+		return redirect(url_for('show_main_page'))
+	else:
+		if not session.get('logged_in'):
+			abort(401)
+		db = get_db()
+		cur = db.execute('select title, text from notes where id=' + str(edit_note_id))
+		note = cur.fetchone()
+		return render_template('edit_note.html', note=note, note_id=edit_note_id)

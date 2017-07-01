@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block title %}
+	Hello, Mark
+{% endblock %}
+
+{% block body %}
+	<div class="responsive_area_wrapper">
+		<div class="responsive_area_first">
+			{% include "show_notes.html" %}
+		</div>
+		<div class="responsive_area_second">
+			{% include "show_sites.html" %}
+		</div>
+	</div>
+{% endblock %}

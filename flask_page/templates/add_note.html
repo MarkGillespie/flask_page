@@ -1,22 +1,20 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	Add Website
+	Add Note
 {% endblock %}
 
 {% block body %}
 	{% if session.logged_in %}
-		<div class="panel add_site_panel">
+		<div class="panel add_note_panel">
 			<div class="head">
-					<span class="title">Add Website</span>
+					<span class="title">Add Note</span>
 			</div>
 			<div class="body"> 
-				<form action="{{ url_for('add_website') }}" method=post class=add-site>
+				<form action="{{ url_for('add_note') }}" method=post class=add-note>
 					<dl>
 						<dt>Title:
 						<dd><input type=text size=40 name=title class="round_text_box">
-						<dt>Link:
-						<dd><input type=text size=40 name=link class="round_text_box">
 						<dt>Text:
 						<dd><textarea name=text rows=5 cols=38 class="round_text_box"></textarea>
 						<dd>

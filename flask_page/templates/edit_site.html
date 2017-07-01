@@ -1,24 +1,24 @@
 {% extends "layout.html" %}
 
 {% block title %}
-	Add Website
+	Edit Site
 {% endblock %}
 
 {% block body %}
 	{% if session.logged_in %}
 		<div class="panel add_site_panel">
 			<div class="head">
-					<span class="title">Add Website</span>
+				<span class="title">Edit Site</span>
 			</div>
 			<div class="body"> 
-				<form action="{{ url_for('add_website') }}" method=post class=add-site>
+				<form action="{{ url_for('edit_site', edit_site_id=site_id) }}" method=post class=add-site>
 					<dl>
 						<dt>Title:
-						<dd><input type=text size=40 name=title class="round_text_box">
+						<dd><input type=text size=40 name=title class="round_text_box" value="{{ site.title }}">
 						<dt>Link:
-						<dd><input type=text size=40 name=link class="round_text_box">
+						<dd><input type=text size=40 name=link class="round_text_box" value="{{ site.link }}">
 						<dt>Text:
-						<dd><textarea name=text rows=5 cols=38 class="round_text_box"></textarea>
+						<dd><textarea name=text rows=5 cols=38 class="round_text_box">{{ site.text }}</textarea>
 						<dd>
 					</dl>
 					<input class="button" type=submit value=Save>
