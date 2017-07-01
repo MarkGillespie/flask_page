@@ -1,0 +1,14 @@
+<div>
+<ul class="calendar_list">
+{% for event in events %}
+	<li>
+	<div class="calendar_event square">
+		<div class="head">{{ event['summary'] }}</div>
+		<div class="body">
+			{{ event['start_day'] }}<br>
+			{{ event['start_time'] }} - {{ event['end_time'] }}
+		</div>
+	</div>
+{% endfor %}
+</ul>
+</div>
