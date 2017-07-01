@@ -6,5 +6,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'flask',
+        'oauth2client',
+        'google-api-python-client'
     ],
 )

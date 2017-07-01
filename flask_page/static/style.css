@@ -9,6 +9,9 @@ body {
 	margin: 0;
 	font-family: 'Raleway', sans-serif;
 	height: 100%;
+	background-repeat: no-repeat;
+	background-size: cover;
+    background-attachment: fixed;
 }
 
 .main_title {
@@ -41,7 +44,7 @@ div.header {
 }
 
 .button {
-	background-color: #FF3B3F;
+	background-color: #328CC1;
 	color: white;
 	padding: 5px;
 	border-radius: 10px;
@@ -51,6 +54,7 @@ div.header {
 	font-size: 18px;
 	font-weight: normal;
 	font-family: 'Raleway', sans-serif;
+	box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
 }
 
 .button a {
@@ -69,7 +73,7 @@ div.header {
 	overflow: hidden;
 }
 
-.panel {
+.square, .panel {
 	margin: 0.8em 0.8em;
 	box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, 0.5);
 	float: left;
@@ -99,18 +103,24 @@ div.header {
 	text-decoration: none;
 }
 
-.panel div.head {
+.head {
 	padding: 0.4em;
+	font-weight: bold;
+}
+
+.note_panel div.head {
+	background-color: #1D2731;
+	color: white;
+}
+
+.site_panel div.head {
 	background-color: #233237;
 	color: white;
-	box-shadow: 0px 0px 3px 2px rgba(0, 0, 0, 0.1);	
 }
 
 .panel div.head span.title{
-	font-size: 24px;
-	font-weight: bold;
-	margin-right: 2em;
 	color: #EEE;
+	font-size: 24px;
 }
 
 .panel div.head .panel_button{
@@ -130,7 +140,7 @@ div.header {
 	color: #777;
 }
 
-.panel div.body {
+.panel div.body, .square div.body {
 	background-color: #FAFAFA;
 	padding: 0.5em;
 	color: #777;
@@ -167,6 +177,26 @@ div.header {
 
 .inline {
 	display: inline;
+}
+
+.calendar_list {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	overflow: hidden;
+}
+
+.calendar_event {
+	width: 150px;
+	background-color: white;
+	margin: 10px;
+	text-align: center;
+	height: auto;
+}
+
+.calendar_event .head {
+	background-color: #0B3C5D;
+	color: white;
 }
 
 @-webkit-keyframes fadeout {
@@ -207,30 +237,16 @@ dt, dd {
 }
 
 .responsive_area_wrapper {
-	overflow:hidden;
-	width: 100%;
+	min-width: 350px;
+	width:auto;
+	overflow: hidden;
 }
-@media screen and (min-width: 800px) {
-	.responsive_area_first {
-		width:48%;
-		float: left;   
-	}
-
-	.responsive_area_second {
-		float: right;
-		width: 48%;
-	}
+.responsive_panel_area {
+	min-width: 350px;
+	width:48%;
+	float: left;   
 }
-
-@media screen and (max-width: 800px) {
-	.responsive_area_first { 
-		float: none;
-		width:auto;
-		border:0;
-		border-bottom:2px solid #000;    
-	}
-
-	.responsive_area_second {
-		overflow:hidden;
-	}
+.calendar_area {
+	overflow: hidden;
+	float: right;
 }

@@ -1,10 +1,9 @@
 <!doctype html>
-<title>Mark Gillespie</title>
+<title>Notes</title>
 <link rel=stylesheet type=text/css href="{{ url_for('static', filename='style.css') }}">
 <link href='https://fonts.googleapis.com/css?family=Raleway:400,700' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="{{ url_for('static', filename='background.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='backgrounds.json') }}"></script>
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -30,6 +29,9 @@ MathJax.Hub.Config({
 		{% if not session.logged_in %}
 			<span class="button"><a href="{{ url_for('login') }}">log in</a></span>
 		{% else %}
+			<span class="button">
+				<a href="{{ url_for('oauth2callback') }}">log in to google</a>
+			</span>
 			<span class="button">
 				<a href="{{ url_for('logout') }}">log out</a>
 			</span>
